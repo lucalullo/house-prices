@@ -1,11 +1,11 @@
-# Ames Housing Price Prediction
+# House Prices
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Kaggle](https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white)
 
-This repository contains a comprehensive data science workflow for predicting residential home prices in Ames, Iowa. 
+This repository contains a comprehensive data science workflow for predicting residential home prices. 
 
 🔗 **Original Notebook on Kaggle:** [View here](https://www.kaggle.com/code/lucalullo/house-prices)
 
