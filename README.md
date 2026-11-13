@@ -6,7 +6,7 @@ This Kaggle notebook explores the House Prices regression competition, preparing
 
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-Ridge_Regression-F7931E?logo=scikitlearn&logoColor=white) [![Kaggle Notebook](https://img.shields.io/badge/Kaggle-Notebook-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/code/lucalullo/house-prices)
 
-[Kaggle notebook](https://www.kaggle.com/code/lucalullo/house-prices) · [Explore the notebook](house-prices.ipynb) · [GitHub profile](https://github.com/lucalullo)
+[Kaggle notebook](https://www.kaggle.com/code/lucalullo/house-prices) · [GitHub repository](https://github.com/lucalullo/house-prices)
 
 ## At a glance
 
@@ -37,7 +37,7 @@ The notebook covers:
 
 ## Methodology
 
-```text
+~~~text
 Kaggle train/test data
         |
         v
@@ -66,7 +66,7 @@ Refit on all labeled rows
         |
         v
 Inverse transform -> submission.csv
-```
+~~~
 
 ### Implementation details
 
@@ -89,27 +89,27 @@ The previous project README also reports a **Kaggle competition score of 0.12676
 
 ## Repository structure
 
-```text
+~~~text
 house-prices/
 ├── README.md
 ├── house-prices.ipynb
 ├── .gitignore
 └── LICENSE
-```
+~~~
 
 ## Getting started
 
 The reference environment is **Kaggle**. The notebook reads competition data from:
 
-```text
+~~~text
 /kaggle/input/competitions/house-prices-advanced-regression-techniques/
-```
+~~~
 
 For local execution, install the principal notebook dependencies:
 
-```bash
+~~~bash
 python -m pip install pandas numpy scipy scikit-learn matplotlib seaborn jupyter
-```
+~~~
 
 Download the competition train/test CSVs, open `house-prices.ipynb`, and replace the Kaggle-specific file paths with local paths. The notebook generates `submission.csv`.
 
@@ -123,9 +123,10 @@ Download the competition train/test CSVs, open `house-prices.ipynb`, and replace
 
 ## Related work
 
-- [GitHub profile and selected projects](https://github.com/lucalullo)
-- [Kaggle profile](https://www.kaggle.com/lucalullo)
+This analysis complements my work on tabular machine learning, from-scratch algorithms, and reproducible Python projects.
+
+**[GitHub profile](https://github.com/lucalullo) · [Kaggle profile](https://www.kaggle.com/lucalullo)**
 
 ## Author
 
-Created by [Luca Lullo](https://github.com/lucalullo). Original work: [House Prices on Kaggle](https://www.kaggle.com/code/lucalullo/house-prices).
+Created by [Luca Lullo](https://github.com/lucalullo).
