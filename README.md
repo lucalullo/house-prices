@@ -1,135 +1,131 @@
-
 # House Prices
 
-**0.12676 Kaggle competition score - predicting residential property prices with Ridge Regression, feature engineering, and regularized linear modeling.**
+**Residential sale price prediction with feature preprocessing, log-transformed targets, and Ridge Regression.**
 
-This project explores an end-to-end machine learning workflow, from exploratory data analysis and feature preprocessing to hyperparameter tuning and house price prediction.
+This Kaggle notebook explores the House Prices regression competition, preparing numerical and categorical housing features and fitting a regularized linear model.
 
-[![Kaggle Competition](https://img.shields.io/badge/Kaggle-Competition-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/code/lucalullo/house-prices)
-![Kaggle Score](https://img.shields.io/badge/Kaggle_Score-0.12676-2E8B57)
-![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
-![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
-![pandas](https://img.shields.io/badge/pandas-Data_Processing-150458?logo=pandas&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-Ridge_Regression-F7931E?logo=scikitlearn&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-Ridge_Regression-F7931E?logo=scikitlearn&logoColor=white) [![Kaggle Notebook](https://img.shields.io/badge/Kaggle-Notebook-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/code/lucalullo/house-prices)
 
-**[View the original Kaggle notebook](https://www.kaggle.com/code/lucalullo/house-prices)** | **[Explore the notebook](house-prices.ipynb)** | **[Author's GitHub](https://github.com/lucalullo)**
-
----
+[Kaggle notebook](https://www.kaggle.com/code/lucalullo/house-prices) · [Explore the notebook](house-prices.ipynb) · [GitHub profile](https://github.com/lucalullo)
 
 ## At a glance
 
 | | |
 |---|---|
-| **Task** | Regression: residential property sale price prediction |
-| **Competition** | Kaggle House Prices |
-| **Reported score** | **0.12676** |
-| **Model** | Ridge Regression with hyperparameter tuning |
-| **Feature processing** | Missing value handling, numerical transformations, categorical encoding |
-| **Analysis** | Target distribution, feature correlations, exploratory visualizations |
+| **Task** | Regression: residential sale price (`SalePrice`) |
+| **Competition** | Kaggle House Prices: Advanced Regression Techniques |
+| **Reported Kaggle score** | **0.12676** (reported in the existing project README; not independently verified from the notebook) |
+| **Recorded validation RMSE** | **0.11728** (notebook output, log-transformed target scale) |
+| **Model** | Ridge Regression (`alpha=10`) |
+| **Validation** | 80/20 train/validation split |
+| **Preprocessing** | Missing values, skewed numerical features, one-hot categorical encoding |
 | **Core libraries** | pandas, NumPy, scikit-learn, SciPy, Matplotlib, Seaborn |
-| **Environment** | Python and Jupyter Notebook |
+| **Data** | Kaggle competition train/test CSVs (not redistributed) |
 
-## Why this project matters
+## Project overview
 
-This is a **feature-engineering-focused machine learning experiment**: the emphasis is on preparing structured housing data and applying regularized linear regression to a prediction task involving numerous numerical and categorical features.
+This is an **applied tabular regression experiment** that examines how cleaning, feature transformations, and linear regularization can support house price prediction.
 
 The notebook covers:
 
-- **Exploratory data analysis:** visualizing the target distribution and examining correlations between features.
-- **Missing value handling:** applying preprocessing decisions based on individual feature characteristics.
-- **Numerical transformations:** using Box-Cox and logarithmic transformations to address skewed distributions.
-- **Categorical encoding:** preparing categorical and quality-related features for regression modeling.
-- **Regularized regression:** using Ridge Regression to control model complexity and reduce overfitting.
-- **Hyperparameter tuning:** optimizing model settings for predictive performance.
+- **Exploration:** distributions and correlations in the training data.
+- **Preprocessing:** missing-value handling and removal or transformation of selected variables.
+- **Target transformation:** fitting the model to `log1p(SalePrice)`.
+- **Categorical encoding:** one-hot encoding and train/test feature alignment.
+- **Regularized regression:** Ridge Regression with a fixed `alpha=10`.
+- **Submission:** fitting on all labeled rows, inverting the log transformation, and creating `submission.csv`.
 
-## Approach
+## Methodology
 
 ```text
-Kaggle housing data
+Kaggle train/test data
         |
         v
-Exploratory data analysis
-        |
-        v
-Missing value handling
+Exploratory analysis + cleaning
         |
         v
 Numerical transformations
         |
         v
-Categorical encoding
+One-hot encoding + column alignment
         |
         v
-Ridge Regression + hyperparameter tuning
+Log-transformed target
         |
         v
-House price predictions
+Train/validation split
+        |
+        v
+Ridge Regression (alpha=10)
+        |
+        v
+Validation RMSE on log scale
+        |
+        v
+Refit on all labeled rows
+        |
+        v
+Inverse transform -> submission.csv
 ```
 
 ### Implementation details
 
-| Component | Notebook approach |
+| Component | Notebook implementation |
 |---|---|
-| Exploratory analysis | Target distribution and correlation matrices |
-| Missing values | Feature-specific preprocessing |
-| Numerical features | Box-Cox and logarithmic transformations |
-| Categorical features | Encoding of categorical and quality-related variables |
-| Model | Ridge Regression with L2 regularization |
-| Model selection | Hyperparameter tuning |
-| Evaluation | Reported Kaggle competition score |
+| Target | `np.log1p(SalePrice)` |
+| Categorical variables | `pd.get_dummies`, followed by train/test column alignment |
+| Validation | `train_test_split(test_size=0.2, random_state=42)` |
+| Estimator | `Ridge(alpha=10)` |
+| Validation metric | RMSE calculated on log-transformed predictions and targets |
+| Output | `np.expm1` converts predictions back to sale prices |
 
-The notebook focuses on a regularized linear regression approach rather than a systematic comparison of multiple predictive models.
+The notebook uses a **fixed Ridge regularization parameter**. It does not contain an automated hyperparameter search or model comparison.
 
-## Competition result
+## Results
 
-> **Kaggle score: 0.12676.**
+> **Recorded holdout RMSE: 0.11728** on the log-transformed target scale.
 
-This is the competition score reported for the original Ridge Regression solution.
+The previous project README also reports a **Kaggle competition score of 0.12676**. That score is retained as a reported competition result, but the archived notebook does not independently establish its leaderboard provenance. The holdout result and Kaggle score should not be presented as interchangeable measurements.
 
-It is **not** presented as a benchmark proving superiority over other regression algorithms; no systematic comparative benchmark is provided here.
-
-[See the original Kaggle notebook](https://www.kaggle.com/code/lucalullo/house-prices).
-
-## Repository contents
+## Repository structure
 
 ```text
-House-price/
+house-prices/
 ├── README.md
-└── house-prices.ipynb
+├── house-prices.ipynb
+├── .gitignore
+└── LICENSE
 ```
 
-The notebook contains the original exploratory analysis, preprocessing workflow, and regression modeling.
+## Getting started
 
-## Run the notebook
+The reference environment is **Kaggle**. The notebook reads competition data from:
 
-The reference environment is **Kaggle**, where the original notebook is available.
+```text
+/kaggle/input/competitions/house-prices-advanced-regression-techniques/
+```
 
-To run it locally, install the required dependencies:
+For local execution, install the principal notebook dependencies:
 
 ```bash
-python -m pip install pandas numpy seaborn matplotlib scikit-learn scipy jupyter
+python -m pip install pandas numpy scipy scikit-learn matplotlib seaborn jupyter
 ```
 
-Then open `house-prices.ipynb` in Jupyter and make the Kaggle competition data available.
+Download the competition train/test CSVs, open `house-prices.ipynb`, and replace the Kaggle-specific file paths with local paths. The notebook generates `submission.csv`.
 
-**Local execution may require updating dataset paths inside the notebook** to match the location of the downloaded files.
+## Limitations
 
-## Scope and limitations
-
-- The project focuses on **Ridge Regression** rather than a systematic comparison of regression algorithms.
-- Preprocessing decisions and numerical transformations are tailored to the competition dataset.
-- The reported competition score does not establish performance on unrelated housing markets or datasets.
-- Reproducing the results requires access to the relevant Kaggle competition data.
-- The original project description does not document a separate external validation study.
+- The model uses a single Ridge configuration rather than automated tuning or comparison with nonlinear estimators.
+- The validation result comes from one holdout split; no cross-validation is shown.
+- The Kaggle score comes from the original project description, not a documented leaderboard artifact inside the notebook.
+- Performance outside the competition housing dataset is unknown.
+- The competition data are not redistributed; access and permitted use are governed by Kaggle.
 
 ## Related work
-
-This project complements my other work on applied machine learning, feature engineering, and reproducible data analysis.
 
 - [GitHub profile and selected projects](https://github.com/lucalullo)
 - [Kaggle profile](https://www.kaggle.com/lucalullo)
 
----
+## Author
 
-**Author:** [Luca Lullo](https://github.com/lucalullo)  
-**Original Kaggle work:** [House Prices](https://www.kaggle.com/code/lucalullo/house-prices)
+Created by [Luca Lullo](https://github.com/lucalullo). Original work: [House Prices on Kaggle](https://www.kaggle.com/code/lucalullo/house-prices).
